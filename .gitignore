@@ -1,0 +1,24 @@
+# .gitignore ファイル
+
+# 環境変数ファイルを無視
+.env
+
+# Pythonによって生成される一般的なファイル/ディレクトリ
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEによって生成される一般的なファイル/ディレクトリ
+.vscode/
+.idea/
+
+# OSによって生成される一般的なファイル/ディレクトリ
+.DS_Store
+Thumbs.db
