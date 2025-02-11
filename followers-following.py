@@ -1,3 +1,4 @@
+# followers-following\followers-following.py
 import os
 import csv
 import requests
@@ -9,6 +10,9 @@ load_dotenv()
 TOKEN = os.getenv("GITHUB_API_TOKEN")
 BASE_URL = os.getenv("BASE_URL")
 USERNAME = os.getenv("GITHUB_USER")
+
+# フォローを外さないユーザーリスト
+ALWAYS_FOLLOW_USERS = {"e-shiten-jp"}
 
 
 def fetch_paginated_data(endpoint, headers):
@@ -78,7 +82,9 @@ new_follows = []
 unfollows = []
 
 # フォローしていないフォロワーユーザーをフォロー
-for user in followers - following_before:  # 初期のフォローリストと比較
+for user in (
+    followers - following_before - ALWAYS_FOLLOW_USERS
+):  # 初期のフォローリストと比較
     if follow_user(user):
         new_follows.append({"username": user})
 
@@ -90,7 +96,7 @@ following_after = get_users(
 # フォロワーでなくなったユーザーをアンフォロー
 for user in (
     following_before - followers
-):  # 初期のフォローリストを新しいフォロワーリストと比較
+) - ALWAYS_FOLLOW_USERS:  # 初期のフォローリストを新しいフォロワーリストと比較
     if unfollow_user(user):
         unfollows.append({"username": user})
 
