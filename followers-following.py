@@ -44,8 +44,11 @@ def follow_user(username):
     if response.status_code == 204:
         print(f"Followed: {username}")
         return True
+    elif response.status_code == 404 or response.status_code == 403:
+        print(f"Failed to follow {username} (private/restricted): {response.text}")
+        return False
     else:
-        print(f"Failed to follow {username}: {response.text}")
+        print(f"Failed to follow {username} (status {response.status_code}): {response.text}")
         return False
 
 
@@ -56,8 +59,11 @@ def unfollow_user(username):
     if response.status_code == 204:
         print(f"Unfollowed: {username}")
         return True
+    elif response.status_code == 404: # Already unfollowed
+        print(f"Already unfollowed (or not following): {username}")
+        return True
     else:
-        print(f"Failed to unfollow {username}: {response.text}")
+        print(f"Failed to unfollow {username} (status {response.status_code}): {response.text}")
         return False
 
 
