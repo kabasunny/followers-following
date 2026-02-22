@@ -1,4 +1,3 @@
-# followers-following\followers-following.py
 import os
 import csv
 import requests
@@ -116,3 +115,12 @@ if unfollows:
     unfollows_file = f"unfollows_{timestamp}.csv"
     save_to_csv(unfollows_file, unfollows, fieldnames=["username"])
     print(f"Unfollows saved to '{unfollows_file}'")
+
+
+def main():
+    """Main entry point for the script"""
+    pass  # All logic is already executed at module level
+
+
+if __name__ == "__main__":
+    main()

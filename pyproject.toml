@@ -1,0 +1,12 @@
+[project]
+name = "followers-following"
+version = "0.1.0"
+description = "GitHub followers and following management tool"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+followers-following = "followers_following:main"
